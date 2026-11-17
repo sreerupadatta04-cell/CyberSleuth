@@ -200,15 +200,20 @@ def run_dual_llm_verification():
         {"id": "EVT-AUTH-105", "event_type": "AUTH_SUCCESS", "user": "finance_admin", "host": "FIN-SRV-01", "source_ip": "198.51.100.44"}
     ]
 
-    reasoning = LLMService.reason_investigation(alert_stub, telemetry_stub, iteration=1)
-    assert reasoning["llm_invoked"] is False
-    assert reasoning["degraded_mode"] is True
-    assert reasoning["llm_provider"] == "DETERMINISTIC_FALLBACK"
-    assert len(reasoning["findings"]) >= 2
-    # Ensure every finding has explicit status (OBSERVED or INFERRED)
-    for f in reasoning["findings"]:
-        assert f["status"] in ["OBSERVED", "INFERRED"]
-        assert 0.0 <= f["confidence"] <= 1.0
+    orig_live = settings.LLM_LIVE_REASONING
+    try:
+        settings.LLM_LIVE_REASONING = False
+        reasoning = LLMService.reason_investigation(alert_stub, telemetry_stub, iteration=1)
+        assert reasoning["llm_invoked"] is False
+        assert reasoning["degraded_mode"] is True
+        assert reasoning["llm_provider"] == "DETERMINISTIC_FALLBACK"
+        assert len(reasoning["findings"]) >= 2
+        # Ensure every finding has explicit status (OBSERVED or INFERRED)
+        for f in reasoning["findings"]:
+            assert f["status"] in ["OBSERVED", "INFERRED"]
+            assert 0.0 <= f["confidence"] <= 1.0
+    finally:
+        settings.LLM_LIVE_REASONING = orig_live
 
     results["deterministic_fallback_provenance"] = "PASS"
     print(f"  -> TEST 6 PASSED: Deterministic fallback engaged ({len(reasoning['findings'])} findings) with explicit degraded_mode=True.")

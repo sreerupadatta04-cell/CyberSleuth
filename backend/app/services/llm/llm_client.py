@@ -65,7 +65,7 @@ class LLMService:
         Returns detailed classification: HEALTHY, UNCONFIGURED, INVALID_KEY, MODEL_NOT_FOUND, QUOTA_EXCEEDED, CONNECTION_FAILED.
         """
         p = provider.lower()
-        key = (api_key or cls.get_api_key(p) or "").strip()
+        key = (api_key if api_key is not None else (cls.get_api_key(p) or "")).strip()
         tested_at = datetime.utcnow().isoformat()
 
         if not key:
