@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #091315;
+    color: #E7F0EC;
+    font-family: 'Inter', sans-serif;
+  }
+
+  code, kbd, samp, pre {
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif;
+    letter-spacing: -0.02em;
+  }
+}
+
+/* Subtle CRT Terminal Scanline Effect */
+.scanlines {
+  position: relative;
+}
+.scanlines::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+  background-size: 100% 4px;
+  z-index: 40;
+  pointer-events: none;
+  opacity: 0.25;
+}
+
+/* Technical Grid Background */
+.bg-tech-grid {
+  background-image: 
+    linear-gradient(to right, rgba(0, 213, 197, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 213, 197, 0.03) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* Terminal Glow & Borders */
+.border-glow-cyan {
+  border: 1px solid rgba(0, 213, 197, 0.3);
+  box-shadow: 0 0 10px -2px rgba(0, 213, 197, 0.2);
+}
+
+.border-glow-lime {
+  border: 1px solid rgba(182, 255, 92, 0.3);
+  box-shadow: 0 0 10px -2px rgba(182, 255, 92, 0.2);
+}
+
+.border-glow-coral {
+  border: 1px solid rgba(255, 98, 108, 0.3);
+  box-shadow: 0 0 10px -2px rgba(255, 98, 108, 0.2);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #091315;
+}
+::-webkit-scrollbar-thumb {
+  background: #033C42;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #00D5C5;
+}

